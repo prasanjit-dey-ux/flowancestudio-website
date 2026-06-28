@@ -93,7 +93,7 @@ export default function Home() {
             <div className="flex flex-col group cursor-pointer bg-white">
               <div className="relative aspect-video md:aspect-[4/3] overflow-hidden bg-stone-100">
                 <Image
-                  src="/studio_interior.png"
+                  src="/pc.png"
                   alt="Design & Development"
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
