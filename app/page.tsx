@@ -9,7 +9,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#FAFAFA] font-sans antialiased text-[#171717] selection:bg-zinc-200">
       {/* Centered Main 1280px Container with borders */}
       <div className="max-w-[1280px] w-full mx-auto border-x border-[#D2D2D2] min-h-screen flex flex-col bg-[#FAFAFA]">
-        
+
         {/* Navigation Bar */}
         <header className="h-16 flex items-center justify-between px-8 border-b border-[#D2D2D2] sticky top-0 bg-[#FAFAFA]/85 backdrop-blur-md z-50">
           <div className="-ml-1 flex items-center">
@@ -88,103 +88,76 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#D2D2D2] border-t border-[#D2D2D2]">
+          <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#D2D2D2] border-t border-[#D2D2D2]">
+
             {/* Service 1: Design & Development */}
-            <div className="flex flex-row p-8 gap-6 justify-between items-stretch bg-white group cursor-pointer">
-              <div className="flex-1 flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] tracking-widest text-stone-500 uppercase block mb-2 font-sans font-semibold">
-                    01
-                  </span>
-                  <h3 className="font-display font-medium text-lg text-[#171717] mb-2">
-                    Design & Development
-                  </h3>
-                  <p className="text-xs font-sans text-stone-600 leading-relaxed max-w-[180px]">
-                    Bespoke user experiences, Next.js/React frontend dev, custom animations, and responsive layout structures.
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-wider text-[#171717] uppercase">View services</span>
-                  <span className="text-xs text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+            <div className="flex flex-col p-10 md:p-12 group cursor-pointer">
+              {/* Image with blue duotone */}
+              <div className="mb-8">
+                <Image
+                  src="/pc.png"
+                  alt="Design & Development"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+                />
               </div>
-              <div className="flex-shrink-0 flex items-center">
-                <div className="relative w-28 h-28 rounded-xl overflow-hidden outline outline-1 outline-neutral-200/50">
-                  <Image
-                    src="/pc.png"
-                    alt="Design & Development"
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="112px"
-                  />
-                </div>
-              </div>
+              {/* Title */}
+              <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
+                Design &amp; Development
+              </h3>
+              {/* Description */}
+              <p className="text-sm font-sans text-stone-500 leading-relaxed">
+                Bespoke user experiences, modern Next.js/React frontend development, custom animations, and responsive layout structures.
+              </p>
             </div>
 
             {/* Service 2: Branding */}
-            <div className="flex flex-row p-8 gap-6 justify-between items-stretch bg-white group cursor-pointer">
-              <div className="flex-1 flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] tracking-widest text-stone-500 uppercase block mb-2 font-sans font-semibold">
-                    02
-                  </span>
-                  <h3 className="font-display font-medium text-lg text-[#171717] mb-2">
-                    Branding
-                  </h3>
-                  <p className="text-xs font-sans text-stone-600 leading-relaxed max-w-[180px]">
-                    Visual identity systems, typographic tokens, brand books, typographic styling, and packaging designs.
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-wider text-[#171717] uppercase">View services</span>
-                  <span className="text-xs text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+            <div className="flex flex-col p-10 md:p-12 group cursor-pointer">
+              {/* Image with blue duotone */}
+              <div className="mb-8">
+                <Image
+                  src="/pc.png"
+                  alt="Branding"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+
+                />
               </div>
-              <div className="flex-shrink-0 flex items-center">
-                <div className="relative w-28 h-28 rounded-xl overflow-hidden outline outline-1 outline-neutral-200/50">
-                  <Image
-                    src="/editorial_publication.png"
-                    alt="Branding"
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="112px"
-                  />
-                </div>
-              </div>
+              {/* Title */}
+              <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
+                Branding
+              </h3>
+              {/* Description */}
+              <p className="text-sm font-sans text-stone-500 leading-relaxed">
+                Visual identity systems, typographic tokens, durable brand books, typographic styling, and packaging designs.
+              </p>
             </div>
 
             {/* Service 3: Product Visualization */}
-            <div className="flex flex-row p-8 gap-6 justify-between items-stretch bg-white group cursor-pointer">
-              <div className="flex-1 flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] tracking-widest text-stone-500 uppercase block mb-2 font-sans font-semibold">
-                    03
-                  </span>
-                  <h3 className="font-display font-medium text-lg text-[#171717] mb-2">
-                    Product Visualization
-                  </h3>
-                  <p className="text-xs font-sans text-stone-600 leading-relaxed max-w-[180px]">
-                    High-fidelity 3D modeling, interdisciplinary digital-physical bounds, cinematic render mockups, and motion.
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-wider text-[#171717] uppercase">View services</span>
-                  <span className="text-xs text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+            <div className="flex flex-col p-10 md:p-12 group cursor-pointer">
+              {/* Image with blue duotone */}
+              <div className="mb-8">
+                <Image
+                  src="/pc.png"
+                  alt="Product Visualization"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+
+                />
               </div>
-              <div className="flex-shrink-0 flex items-center">
-                <div className="relative w-28 h-28 rounded-xl overflow-hidden bg-neutral-900">
-                  <video
-                    src="/jellyfish.mp4"
-                    className="w-full h-full object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                </div>
-              </div>
+              {/* Title */}
+              <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
+                Product Visualization
+              </h3>
+              {/* Description */}
+              <p className="text-sm font-sans text-stone-500 leading-relaxed">
+                High-fidelity 3D modeling, interdisciplinary digital-physical bounds, cinematic render mockups, and motion animations.
+              </p>
             </div>
+
           </div>
         </section>
 
@@ -290,7 +263,7 @@ export default function Home() {
               playsInline
             />
           </div>
-          
+
           <div className="md:col-span-7 md:col-start-6 divide-y divide-[#D2D2D2] border-t border-[#D2D2D2]">
             <details className="group py-6 cursor-pointer [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex justify-between items-center list-none font-display font-medium text-base text-[#171717]">
@@ -397,14 +370,14 @@ export default function Home() {
 
           {/* Right Column Group: Contact, Navigation & Socials */}
           <div className="relative z-10 flex flex-col sm:flex-row gap-x-16 md:gap-x-24 gap-y-10 text-sm font-sans pt-1">
-            
+
             {/* Contact details: Phone & Email */}
             <div className="flex flex-col gap-6">
               {/* Phone */}
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-primary uppercase">
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                   </svg>
                   <span>Phone</span>
                 </div>
@@ -417,7 +390,7 @@ export default function Home() {
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-primary uppercase">
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                   </svg>
                   <span>Email</span>
                 </div>
@@ -442,7 +415,7 @@ export default function Home() {
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:underline transition-all">Twitter</a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:underline transition-all">Instagram</a>
             </div>
-            
+
           </div>
         </footer>
 
