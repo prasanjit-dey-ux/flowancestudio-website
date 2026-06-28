@@ -91,7 +91,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#D2D2D2] border-t border-[#D2D2D2]">
             {/* Service 1: Design & Development */}
             <div className="flex flex-col group cursor-pointer bg-white">
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative h-[160px] w-full overflow-hidden">
                 <Image
                   src="/pc.png"
                   alt="Design & Development"
@@ -121,7 +121,7 @@ export default function Home() {
 
             {/* Service 2: Branding */}
             <div className="flex flex-col group cursor-pointer bg-white">
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative h-[160px] w-full overflow-hidden">
                 <Image
                   src="/editorial_publication.png"
                   alt="Branding"
@@ -151,7 +151,7 @@ export default function Home() {
 
             {/* Service 3: Product Visualization */}
             <div className="flex flex-col group cursor-pointer bg-white">
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative h-[160px] w-full overflow-hidden">
                 <video
                   src="/jellyfish.mp4"
                   className="w-full h-full object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
