@@ -88,19 +88,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#D2D2D2] border-t border-[#D2D2D2]">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#D2D2D2] border-t border-[#D2D2D2]">
             {/* Service 1: Design & Development */}
-            <div className="flex flex-col group cursor-pointer bg-white">
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <Image
-                  src="/pc.png"
-                  alt="Design & Development"
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  sizes="(max-w-768px) 100vw, 33vw"
-                />
-              </div>
-              <div className="p-8 border-t border-[#D2D2D2] flex flex-col justify-between flex-1">
+            <div className="flex flex-row p-8 gap-6 justify-between items-stretch bg-white group cursor-pointer">
+              <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] tracking-widest text-stone-500 uppercase block mb-2 font-sans font-semibold">
                     01
@@ -108,29 +99,31 @@ export default function Home() {
                   <h3 className="font-display font-medium text-lg text-[#171717] mb-2">
                     Design & Development
                   </h3>
-                  <p className="text-xs font-sans text-stone-600 leading-relaxed">
-                    Bespoke user experiences, modern Next.js/React frontend development, custom animations, and responsive layout structures.
+                  <p className="text-xs font-sans text-stone-600 leading-relaxed max-w-[180px]">
+                    Bespoke user experiences, Next.js/React frontend dev, custom animations, and responsive layout structures.
                   </p>
                 </div>
-                <div className="mt-8 flex items-center justify-between">
+                <div className="mt-6 flex items-center justify-between">
                   <span className="text-xs font-semibold tracking-wider text-[#171717] uppercase">View services</span>
                   <span className="text-xs text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+              <div className="flex-shrink-0 flex items-center">
+                <div className="relative w-28 h-28 rounded-xl overflow-hidden outline outline-1 outline-neutral-200/50">
+                  <Image
+                    src="/pc.png"
+                    alt="Design & Development"
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="112px"
+                  />
                 </div>
               </div>
             </div>
 
             {/* Service 2: Branding */}
-            <div className="flex flex-col group cursor-pointer bg-white">
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <Image
-                  src="/editorial_publication.png"
-                  alt="Branding"
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  sizes="(max-w-768px) 100vw, 33vw"
-                />
-              </div>
-              <div className="p-8 border-t border-[#D2D2D2] flex flex-col justify-between flex-1">
+            <div className="flex flex-row p-8 gap-6 justify-between items-stretch bg-white group cursor-pointer">
+              <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] tracking-widest text-stone-500 uppercase block mb-2 font-sans font-semibold">
                     02
@@ -138,30 +131,31 @@ export default function Home() {
                   <h3 className="font-display font-medium text-lg text-[#171717] mb-2">
                     Branding
                   </h3>
-                  <p className="text-xs font-sans text-stone-600 leading-relaxed">
-                    Visual identity systems, typographic tokens, durable brand books, typographic styling, and packaging designs.
+                  <p className="text-xs font-sans text-stone-600 leading-relaxed max-w-[180px]">
+                    Visual identity systems, typographic tokens, brand books, typographic styling, and packaging designs.
                   </p>
                 </div>
-                <div className="mt-8 flex items-center justify-between">
+                <div className="mt-6 flex items-center justify-between">
                   <span className="text-xs font-semibold tracking-wider text-[#171717] uppercase">View services</span>
                   <span className="text-xs text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+              <div className="flex-shrink-0 flex items-center">
+                <div className="relative w-28 h-28 rounded-xl overflow-hidden outline outline-1 outline-neutral-200/50">
+                  <Image
+                    src="/editorial_publication.png"
+                    alt="Branding"
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="112px"
+                  />
                 </div>
               </div>
             </div>
 
             {/* Service 3: Product Visualization */}
-            <div className="flex flex-col group cursor-pointer bg-white">
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <video
-                  src="/jellyfish.mp4"
-                  className="w-full h-full object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-              </div>
-              <div className="p-8 border-t border-[#D2D2D2] flex flex-col justify-between flex-1">
+            <div className="flex flex-row p-8 gap-6 justify-between items-stretch bg-white group cursor-pointer">
+              <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] tracking-widest text-stone-500 uppercase block mb-2 font-sans font-semibold">
                     03
@@ -169,13 +163,25 @@ export default function Home() {
                   <h3 className="font-display font-medium text-lg text-[#171717] mb-2">
                     Product Visualization
                   </h3>
-                  <p className="text-xs font-sans text-stone-600 leading-relaxed">
-                    High-fidelity 3D modeling, interdisciplinary digital-physical bounds, cinematic render mockups, and motion animations.
+                  <p className="text-xs font-sans text-stone-600 leading-relaxed max-w-[180px]">
+                    High-fidelity 3D modeling, interdisciplinary digital-physical bounds, cinematic render mockups, and motion.
                   </p>
                 </div>
-                <div className="mt-8 flex items-center justify-between">
+                <div className="mt-6 flex items-center justify-between">
                   <span className="text-xs font-semibold tracking-wider text-[#171717] uppercase">View services</span>
                   <span className="text-xs text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+              <div className="flex-shrink-0 flex items-center">
+                <div className="relative w-28 h-28 rounded-xl overflow-hidden bg-neutral-900">
+                  <video
+                    src="/jellyfish.mp4"
+                    className="w-full h-full object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
                 </div>
               </div>
             </div>
