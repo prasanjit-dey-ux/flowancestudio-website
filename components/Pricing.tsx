@@ -341,7 +341,7 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="min-h-screen px-8 py-24 md:py-32 border-b border-[#D2D2D2] flex flex-col justify-center bg-[#FAFAFA]/40 relative">
+    <section id="pricing" className="min-h-screen px-8 py-12 md:py-16 border-b border-[#D2D2D2] flex flex-col justify-center bg-[#FAFAFA]/40 relative">
       
       {/* Title */}
       <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight text-center text-[#171717] mb-10">
