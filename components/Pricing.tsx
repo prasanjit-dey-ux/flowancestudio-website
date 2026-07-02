@@ -6,7 +6,7 @@ import GoogleMeetIcon from '@/public/icon/google-meet';
 import SubscriptionTickIcon from '@/public/icon/subscription-tick';
 import TelegramIcon from '@/public/icon/telegram';
 
-type TabType = 'landing-page' | 'branding' | 'viz' | 'apps';
+type TabType = 'landing-page' | 'branding' | 'viz' | 'web-app' | 'mobile-app';
 
 interface TagPillProps {
   text: string;
@@ -94,7 +94,7 @@ export function PricingCTAButton({ text, href }: PricingCTAButtonProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-full px-2.5 py-4 bg-stone-950 hover:bg-primary transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(255,255,255,0.18),_inset_0px_-1.5px_0px_0px_rgba(0,0,0,0.4),_inset_0px_1.5px_0px_0px_rgba(255,255,255,0.15)] outline outline-1 outline-offset-[-1px] outline-stone-800 hover:outline-primary inline-flex justify-center items-center gap-2.5 overflow-hidden outline-none cursor-pointer"
+      className="w-full px-2.5 py-4 bg-stone-950 hover:bg-stone-800 transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(255,255,255,0.18),_inset_0px_-1.5px_0px_0px_rgba(0,0,0,0.4),_inset_0px_1.5px_0px_0px_rgba(255,255,255,0.15)] outline outline-1 outline-offset-[-1px] outline-stone-800 hover:outline-stone-700 inline-flex justify-center items-center gap-2.5 overflow-hidden outline-none cursor-pointer"
     >
       <div className="flex justify-start items-center gap-2.5">
         <GoogleMeetIcon className="w-[18px] h-[15px] flex-shrink-0" />
@@ -112,6 +112,7 @@ export default function Pricing() {
   const [addGuidelines, setAddGuidelines] = useState(false);
   const [addHighRes, setAddHighRes] = useState(false);
   const [addCMS, setAddCMS] = useState(false);
+  const [addMobileNative, setAddMobileNative] = useState(false);
 
   // Live adjustment controller states for flowers
   const [showController, setShowController] = useState(false);
@@ -273,43 +274,50 @@ export default function Pricing() {
     <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
       <FigmaFlowersRight />
 
+      {/* Tag pill */}
       <div className="left-[24px] top-[24px] absolute z-10">
         <TagPill text="Ultimate package" />
       </div>
 
-      {/* Price Container */}
-      <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
-        <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
-          from $7,999<span className="text-xs text-stone-400 font-sans font-normal ml-1">/mo</span>
-        </div>
+      {/* Price */}
+      <div className="left-[24px] top-[81px] absolute z-10 text-neutral-900 text-4xl font-normal font-display leading-9">
+        from $7,999<span className="text-xs text-stone-400 font-sans font-normal ml-1">/mo</span>
       </div>
 
-      {/* Checklist Container */}
+      {/* Checklist — starts at same top as left card checklist */}
       <div className="w-[499px] left-[24px] top-[148px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
         <div className="self-stretch inline-flex justify-start items-center gap-2.5">
           <FigmaCheckIcon />
-          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom, no templates</div>
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Bespoke Design &amp; Development</div>
         </div>
         <div className="self-stretch inline-flex justify-start items-center gap-2.5">
           <FigmaCheckIcon />
-          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Desktop, Tablet, Mobile Responsive</div>
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Unlimited Requests &amp; Revisions</div>
         </div>
         <div className="self-stretch inline-flex justify-start items-center gap-2.5">
           <FigmaCheckIcon />
-          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma File handover</div>
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Dedicated Creative Team</div>
         </div>
         <div className="self-stretch inline-flex justify-start items-center gap-2.5">
           <FigmaCheckIcon />
-          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">No Limit to revisions</div>
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Weekly Strategy &amp; Review Calls</div>
         </div>
         <div className="self-stretch inline-flex justify-start items-center gap-2.5">
           <FigmaCheckIcon />
-          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Updates every 48 hours</div>
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Full Source Files &amp; Code Ownership</div>
+        </div>
+        <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+          <FigmaCheckIcon />
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Priority Delivery with 48-Hour Updates</div>
+        </div>
+        <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+          <FigmaCheckIcon />
+          <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Ongoing Support, Maintenance &amp; Optimization</div>
         </div>
       </div>
 
-      {/* Capability Tags Grid using the ServiceTagPill component as requested */}
-      <div className="w-[499px] left-[24px] top-[345px] absolute flex flex-wrap gap-2 pt-5 z-10">
+      {/* Capability Tags */}
+      <div className="w-[499px] left-[24px] top-[412px] absolute flex flex-wrap gap-2 z-10">
         <ServiceTagPill text="Landing Page" />
         <ServiceTagPill text="Logo" />
         <ServiceTagPill text="Mobile Apps" />
@@ -334,23 +342,25 @@ export default function Pricing() {
       case 'branding':
         return { left: '152px', width: '110px' };
       case 'viz':
-        return { left: '270px', width: '210px' };
-      case 'apps':
-        return { left: '488px', width: '170px' };
+        return { left: '270px', width: '120px' };
+      case 'web-app':
+        return { left: '398px', width: '100px' };
+      case 'mobile-app':
+        return { left: '506px', width: '120px' };
     }
   };
 
   return (
-    <section id="pricing" className="min-h-screen px-8 py-12 md:py-16 border-b border-[#D2D2D2] flex flex-col justify-center bg-[#FAFAFA]/40 relative">
+    <section id="pricing" className="px-8 py-8 md:py-12 border-b border-[#D2D2D2] flex flex-col justify-center bg-[#FAFAFA]/40 relative">
       
       {/* Title */}
-      <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight text-center text-[#171717] mb-10">
+      <h2 className="font-display font-medium text-3xl md:text-4xl tracking-tight text-center text-[#171717] mb-8">
         Pricing for work worth keeping
       </h2>
 
       {/* Segmented Tab Bar Outer Div Wrapper using drop shadows */}
-      <div className="flex justify-center mb-16">
-        <div className="h-16 p-1 bg-white rounded-[130px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.08),_inset_0px_1px_1px_0px_rgba(0,0,0,0.08)] inline-flex justify-start items-center gap-2 overflow-hidden relative w-[662px] z-10">
+      <div className="flex justify-center mb-8">
+        <div className="h-16 p-1 bg-white rounded-[130px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.08),_inset_0px_1px_1px_0px_rgba(0,0,0,0.08)] inline-flex justify-start items-center gap-2 overflow-hidden relative w-[634px] z-10">
           
           {/* Gliding active background active pill containing the exact shadow and outline styles requested */}
           <div
@@ -373,17 +383,24 @@ export default function Pricing() {
           />
 
           <ServiceTabButton
-            text="Product Visualization"
+            text="3D Design"
             active={activeTab === 'viz'}
             onClick={() => setActiveTab('viz')}
-            widthClass="w-[210px]"
+            widthClass="w-[120px]"
           />
 
           <ServiceTabButton
-            text="Web/ Mobile App"
-            active={activeTab === 'apps'}
-            onClick={() => setActiveTab('apps')}
-            widthClass="w-[170px]"
+            text="Web App"
+            active={activeTab === 'web-app'}
+            onClick={() => setActiveTab('web-app')}
+            widthClass="w-[100px]"
+          />
+
+          <ServiceTabButton
+            text="Mobile App"
+            active={activeTab === 'mobile-app'}
+            onClick={() => setActiveTab('mobile-app')}
+            widthClass="w-[120px]"
           />
 
         </div>
@@ -394,7 +411,7 @@ export default function Pricing() {
         
         {activeTab === 'landing-page' && (
           <>
-            {/* Card 1 */}
+            {/* Card 1 - Landing Page */}
             <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
               <FigmaFlowersLeft />
               
@@ -404,23 +421,22 @@ export default function Pricing() {
 
               <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
                 <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
-                  from ${addDevelopment ? (1599 + 2799).toLocaleString() : '1,599'}
+                  from ${addDevelopment ? (1199 + 2099).toLocaleString() : '1,199'}
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
-                  {/* Reusable ToggleSwitch component */}
                   <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
                     <div className="flex justify-start items-center gap-2">
                       <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add Development</div>
                     </div>
                     <div className="flex justify-start items-center gap-3">
-                      <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$2,799</div>
+                      <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$2,099</div>
                       <ToggleSwitch enabled={addDevelopment} onChange={setAddDevelopment} />
                     </div>
                   </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
                     <div className="self-stretch inline-flex justify-between items-center">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Extra Pages</div>
-                      <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+$300/PAGE</div>
+                      <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+${addDevelopment ? '400' : '300'}/PAGE</div>
                     </div>
                     <div className="w-[499px] h-px bg-zinc-100" />
                     <div className="self-stretch inline-flex justify-between items-center">
@@ -432,26 +448,54 @@ export default function Pricing() {
               </div>
 
               <div className="w-[499px] left-[24px] top-[309px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom, no templates</div>
-                </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Desktop, Tablet, Mobile Responsive</div>
-                </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma File handover</div>
-                </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">No Limit to revisions</div>
-                </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 2-4 weeks</div>
-                </div>
+                {addDevelopment ? (
+                  <>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom UI/UX Design, No Templates</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Fully Responsive (Desktop, Tablet &amp; Mobile)</div>
+                    </div>
+
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Conversion-Focused UX</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 Revisions</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma Source Files Included</div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom UI/UX Design, No Templates</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Fully Responsive (Desktop, Tablet &amp; Mobile)</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Conversion-Focused UX</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 Revisions</div>
+                    </div>
+                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                      <FigmaCheckIcon />
+                      <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma Source Files Included</div>
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
@@ -475,19 +519,9 @@ export default function Pricing() {
 
               <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
                 <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
-                  from ${addGuidelines ? (2499 + 999).toLocaleString() : '2,499'}
+                  from $1,499
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
-                  {/* Reusable ToggleSwitch component */}
-                  <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
-                    <div className="flex justify-start items-center gap-2">
-                      <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add Brand Guidelines</div>
-                    </div>
-                    <div className="flex justify-start items-center gap-3">
-                      <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$999</div>
-                      <ToggleSwitch enabled={addGuidelines} onChange={setAddGuidelines} />
-                    </div>
-                  </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
                     <div className="self-stretch inline-flex justify-between items-center">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Extra Concepts</div>
@@ -509,19 +543,19 @@ export default function Pricing() {
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom Color Palette & Typography Guidelines</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom Color Palette & Typography System</div>
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Brand Identity assets bundle</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Brand Identity Assets and poster design for Print & Digital</div>
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma and Vector files handover</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Editable Source Files & Full Ownership</div>
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 2-3 weeks</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 Revisions</div>
                 </div>
               </div>
 
@@ -605,14 +639,14 @@ export default function Pricing() {
           </>
         )}
 
-        {activeTab === 'apps' && (
+        {activeTab === 'web-app' && (
           <>
-            {/* Card 1 */}
+            {/* Card 1 - Web App */}
             <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
               <FigmaFlowersLeft />
               
               <div className="left-[24px] top-[24px] absolute z-10">
-                <TagPill text="Custom Web application" />
+                <TagPill text="Web Application" />
               </div>
 
               <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
@@ -620,10 +654,9 @@ export default function Pricing() {
                   from ${addCMS ? (4999 + 1999).toLocaleString() : '4,999'}
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
-                  {/* Reusable ToggleSwitch component */}
                   <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
                     <div className="flex justify-start items-center gap-2">
-                      <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add CMS & Database</div>
+                      <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add CMS &amp; Database</div>
                     </div>
                     <div className="flex justify-start items-center gap-3">
                       <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$1,999</div>
@@ -632,7 +665,7 @@ export default function Pricing() {
                   </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
                     <div className="self-stretch inline-flex justify-between items-center">
-                      <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Performance & SEO Tuning</div>
+                      <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Performance &amp; SEO Tuning</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">Included</div>
                     </div>
                     <div className="w-[499px] h-px bg-zinc-100" />
@@ -651,19 +684,89 @@ export default function Pricing() {
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Tailwind CSS responsive design layout</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Responsive design across all screen sizes</div>
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Smooth animations & state micro-interactions</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Smooth animations &amp; micro-interactions</div>
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">SEO, metadata, & performance optimization</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">SEO, metadata &amp; performance optimization</div>
                 </div>
                 <div className="self-stretch inline-flex justify-start items-center gap-2.5">
                   <FigmaCheckIcon />
-                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 4-6 weeks</div>
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 4–6 weeks</div>
+                </div>
+              </div>
+
+              <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
+                <PricingCTAButton text="Book a call" href="https://calendly.com" />
+              </div>
+            </div>
+
+            <ConstantRightCard />
+          </>
+        )}
+
+        {activeTab === 'mobile-app' && (
+          <>
+            {/* Card 1 - Mobile App */}
+            <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
+              <FigmaFlowersLeft />
+              
+              <div className="left-[24px] top-[24px] absolute z-10">
+                <TagPill text="Mobile Application" />
+              </div>
+
+              <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
+                <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
+                  from ${addMobileNative ? (5999 + 2000).toLocaleString() : '5,999'}
+                </div>
+                <div className="self-stretch flex flex-col justify-start items-start gap-6">
+                  <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
+                    <div className="flex justify-start items-center gap-2">
+                      <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add iOS + Android (both platforms)</div>
+                    </div>
+                    <div className="flex justify-start items-center gap-3">
+                      <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$2,000</div>
+                      <ToggleSwitch enabled={addMobileNative} onChange={setAddMobileNative} />
+                    </div>
+                  </div>
+                  <div className="self-stretch flex flex-col justify-start items-start gap-3">
+                    <div className="self-stretch inline-flex justify-between items-center">
+                      <div className="text-neutral-600 text-sm font-normal font-sans leading-5">App Store &amp; Play Store submission</div>
+                      <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">Included</div>
+                    </div>
+                    <div className="w-[499px] h-px bg-zinc-100" />
+                    <div className="self-stretch inline-flex justify-between items-center">
+                      <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Push notifications setup</div>
+                      <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">Included</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[499px] left-[24px] top-[309px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
+                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                  <FigmaCheckIcon />
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">React Native cross-platform development</div>
+                </div>
+                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                  <FigmaCheckIcon />
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom UI components &amp; animations</div>
+                </div>
+                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                  <FigmaCheckIcon />
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Offline support &amp; local data storage</div>
+                </div>
+                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                  <FigmaCheckIcon />
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">API integration &amp; authentication</div>
+                </div>
+                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
+                  <FigmaCheckIcon />
+                  <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 6–10 weeks</div>
                 </div>
               </div>
 
@@ -692,7 +795,7 @@ export default function Pricing() {
           href="https://t.me/flowancestudio"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3.5 bg-[#E5E5E5] hover:bg-primary hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1px_0px_0px_rgba(65,65,65,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] hover:outline-primary inline-flex justify-center items-center gap-2.5 cursor-pointer outline-none text-[#171717] font-medium text-sm font-sans"
+          className="px-6 py-3.5 bg-[#E5E5E5] hover:bg-[#CECECE] hover:outline-[#C0C0C0] transition-all duration-300 rounded-[130px] shadow-[0px_1px_0px_0px_rgba(65,65,65,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] inline-flex justify-center items-center gap-2.5 cursor-pointer outline-none text-[#171717] font-medium text-sm font-sans"
         >
           <TelegramIcon className="w-5 h-5 flex-shrink-0" />
           <span>Send a message</span>

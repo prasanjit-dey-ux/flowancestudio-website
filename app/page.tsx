@@ -11,41 +11,50 @@ export default function Home() {
       <div className="max-w-[1280px] w-full mx-auto border-x border-[#D2D2D2] min-h-screen flex flex-col bg-[#FAFAFA]">
 
         {/* Navigation Bar */}
-        <header className="h-16 flex items-center justify-between px-8 border-b border-[#D2D2D2] sticky top-0 bg-[#FAFAFA]/85 backdrop-blur-md z-50">
+        <header className="h-16 flex items-center justify-between px-4 sm:px-8 border-b border-[#D2D2D2] sticky top-0 bg-[#FAFAFA]/85 backdrop-blur-md z-50">
           <div className="-ml-1 flex items-center">
             <Image
               src="/logo-text.png"
               alt="Flowance Studio Logo"
               width={160}
               height={36}
-              className="h-7.5 w-auto object-contain"
+              className="h-7 w-auto object-contain"
               priority
             />
           </div>
-          <nav className="flex gap-8 text-xs font-medium tracking-wide">
+          <nav className="hidden md:flex gap-8 text-xs font-medium tracking-wide">
             <a href="#services" className="hover:text-primary transition-colors duration-200">SERVICES</a>
             <a href="#work" className="hover:text-primary transition-colors duration-200">WORK</a>
             <a href="#pricing" className="hover:text-primary transition-colors duration-200">PRICING</a>
             <a href="#faq" className="hover:text-primary transition-colors duration-200">FAQ</a>
             <a href="#footer" className="hover:text-primary transition-colors duration-200">CONTACT</a>
           </nav>
+          {/* Mobile CTA */}
+          <a
+            href="https://calendly.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="md:hidden px-4 py-2 bg-[#171717] text-white text-xs font-medium rounded-full"
+          >
+            Book a call
+          </a>
         </header>
 
         {/* Hero Section */}
         <section className="flex flex-col justify-start">
-          <div className="px-8 pt-20 pb-16">
-            <span className="text-xs font-medium tracking-widest text-stone-500 uppercase mb-6 block">
-              01 / ARCHITECTURE & IDENTITY
+          <div className="px-4 sm:px-8 pt-12 sm:pt-20 pb-10 sm:pb-16">
+            <span className="text-xs font-medium tracking-widest text-stone-500 uppercase mb-4 sm:mb-6 block">
+              01 / STRATEGY • BRANDING • DIGITAL EXPERIENCE
             </span>
-            <h1 className="font-display font-normal text-3xl md:text-5xl lg:text-[44px] tracking-tight leading-[1.3] max-w-4xl text-[#171717] mb-8">
-              We create strategies, brand systems,<br />digital products, and experiences for the<br />world's most disruptive thinkers.
+            <h1 className="font-display font-normal text-2xl sm:text-3xl md:text-5xl lg:text-[44px] tracking-tight leading-[1.3] max-w-2xl text-[#171717] mb-6 sm:mb-8">
+              We build brands, products & visuals that people remember and digital experiences they never forget.
             </h1>
-            <div className="flex flex-wrap gap-4 font-sans">
+            <div className="flex flex-wrap gap-3 sm:gap-4 font-sans">
               <a
                 href="https://calendly.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 bg-[#171717] hover:bg-primary hover:outline-primary hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(0,0,0,0.15)] outline outline-1 outline-offset-[-1px] outline-neutral-800 inline-flex justify-center items-center gap-2.5 cursor-pointer outline-none text-white font-medium text-sm font-sans"
+                className="px-5 sm:px-6 py-3 sm:py-3.5 bg-[#171717] hover:bg-primary hover:outline-primary hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(0,0,0,0.15)] outline outline-1 outline-offset-[-1px] outline-neutral-800 inline-flex justify-center items-center gap-2.5 cursor-pointer text-white font-medium text-sm font-sans"
               >
                 <GoogleMeetIcon className="w-[18px] h-[15px] flex-shrink-0" />
                 <span>Book a call</span>
@@ -54,7 +63,7 @@ export default function Home() {
                 href="https://t.me/flowancestudio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 bg-[#E5E5E5] hover:bg-primary hover:outline-primary hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1px_0px_0px_rgba(65,65,65,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] inline-flex justify-center items-center gap-2.5 cursor-pointer outline-none text-[#171717] font-medium text-sm font-sans"
+                className="px-5 sm:px-6 py-3 sm:py-3.5 bg-[#E5E5E5] hover:bg-[#CECECE] hover:outline-[#C0C0C0] transition-all duration-300 rounded-[130px] shadow-[0px_1px_0px_0px_rgba(65,65,65,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] inline-flex justify-center items-center gap-2.5 cursor-pointer text-[#171717] font-medium text-sm font-sans"
               >
                 <TelegramIcon className="w-5 h-5 flex-shrink-0" />
                 <span>Send a message</span>
@@ -62,13 +71,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Full Bleed Illustration Image */}
-          <div className="w-full relative aspect-[16/10] md:aspect-[16/9] overflow-hidden border-t border-b border-[#D2D2D2] bg-stone-50">
+          {/* Full Bleed Hero Image */}
+          <div className="w-full relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] overflow-hidden border-t border-b border-[#D2D2D2] bg-stone-50">
             <Image
-              src="/hero_illustration.png"
-              alt="Flowance Studios beautiful pixel art garden workspace"
+              src="/hero-bg.png"
+              alt="Flowance Studio hero illustration"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority
             />
           </div>
@@ -76,11 +85,11 @@ export default function Home() {
 
         {/* Services Section */}
         <section id="services" className="border-b border-[#D2D2D2]">
-          <div className="px-8 pt-16 pb-10">
+          <div className="px-4 sm:px-8 pt-12 sm:pt-16 pb-8 sm:pb-10">
             <span className="text-xs font-medium tracking-widest text-stone-500 uppercase mb-2 block">
               02 / SERVICES
             </span>
-            <h2 className="font-display font-normal text-3xl tracking-tight leading-tight text-[#171717]">
+            <h2 className="font-display font-normal text-2xl sm:text-3xl tracking-tight leading-tight text-[#171717]">
               Our capabilities.
             </h2>
             <p className="mt-4 font-sans text-sm md:text-base text-stone-500 max-w-xl leading-relaxed">
@@ -91,70 +100,59 @@ export default function Home() {
           <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#D2D2D2] border-t border-[#D2D2D2]">
 
             {/* Service 1: Design & Development */}
-            <div className="flex flex-col p-10 md:p-12 group cursor-pointer">
-              {/* Image with blue duotone */}
-              <div className="mb-8">
+            <div className="flex flex-col p-8 sm:p-10 md:p-12 group cursor-pointer">
+              <div className="mb-6 sm:mb-8">
                 <Image
-                  src="/pc.png"
+                  src="/icon/design-development.png"
                   alt="Design & Development"
                   width={120}
                   height={120}
-                  className="object-contain"
+                  className="object-contain object-left grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              {/* Title */}
               <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
                 Design &amp; Development
               </h3>
-              {/* Description */}
               <p className="text-sm font-sans text-stone-500 leading-relaxed">
-                Bespoke user experiences, modern Next.js/React frontend development, custom animations, and responsive layout structures.
+                We design and build fast, scalable digital products with intuitive user experiences combined with scalable frontend architecture, smooth animations, and responsive design systems.
               </p>
             </div>
 
             {/* Service 2: Branding */}
-            <div className="flex flex-col p-10 md:p-12 group cursor-pointer">
-              {/* Image with blue duotone */}
-              <div className="mb-8">
+            <div className="flex flex-col p-8 sm:p-10 md:p-12 group cursor-pointer">
+              <div className="mb-6 sm:mb-8">
                 <Image
-                  src="/pc.png"
+                  src="/icon/branding.png"
                   alt="Branding"
                   width={120}
                   height={120}
-                  className="object-contain"
-
+                  className="object-contain object-left grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              {/* Title */}
               <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
                 Branding
               </h3>
-              {/* Description */}
               <p className="text-sm font-sans text-stone-500 leading-relaxed">
-                Visual identity systems, typographic tokens, durable brand books, typographic styling, and packaging designs.
+                Transforming ideas into iconic brands with distinctive identities, cohesive design languages, premium packaging, and scalable brand systems.
               </p>
             </div>
 
             {/* Service 3: Product Visualization */}
-            <div className="flex flex-col p-10 md:p-12 group cursor-pointer">
-              {/* Image with blue duotone */}
-              <div className="mb-8">
+            <div className="flex flex-col p-8 sm:p-10 md:p-12 group cursor-pointer">
+              <div className="mb-6 sm:mb-8">
                 <Image
-                  src="/pc.png"
+                  src="/icon/3d.png"
                   alt="Product Visualization"
                   width={120}
                   height={120}
-                  className="object-contain"
-
+                  className="object-contain object-left grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              {/* Title */}
               <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
                 Product Visualization
               </h3>
-              {/* Description */}
               <p className="text-sm font-sans text-stone-500 leading-relaxed">
-                High-fidelity 3D modeling, interdisciplinary digital-physical bounds, cinematic render mockups, and motion animations.
+                Transforming products into stunning visual experiences through photorealistic 3D visuals, cinematic animations, and immersive product experiences that captivate audiences and elevate brands.
               </p>
             </div>
 
@@ -163,16 +161,16 @@ export default function Home() {
 
         {/* Featured Work Grid */}
         <section id="work" className="border-b border-[#D2D2D2]">
-          <div className="px-8 pt-16 pb-8">
+          <div className="px-4 sm:px-8 pt-12 sm:pt-16 pb-6 sm:pb-8">
             <span className="text-xs font-medium tracking-widest text-stone-500 uppercase mb-2 block">
               03 / SELECTED WORK
             </span>
-            <h2 className="font-display font-normal text-3xl tracking-tight text-[#171717]">
+            <h2 className="font-display font-normal text-2xl sm:text-3xl tracking-tight text-[#171717]">
               Built artifacts.
             </h2>
           </div>
 
-          <div className="px-8 pb-24 md:pb-32 flex flex-col gap-20 md:gap-28">
+          <div className="px-4 sm:px-8 pb-16 sm:pb-24 md:pb-32 flex flex-col gap-14 sm:gap-20 md:gap-28">
             {/* Project 1 */}
             <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center group cursor-pointer">
               <div className="md:col-span-5 flex flex-col justify-center">
@@ -243,7 +241,7 @@ export default function Home() {
         <Pricing />
 
         {/* FAQ Section */}
-        <section id="faq" className="px-8 py-24 md:py-32 border-b border-[#D2D2D2] grid md:grid-cols-12 gap-12 md:gap-8">
+        <section id="faq" className="px-4 sm:px-8 py-16 sm:py-24 md:py-32 border-b border-[#D2D2D2] grid md:grid-cols-12 gap-8 md:gap-8">
           <div className="md:col-span-4">
             <span className="text-xs font-medium tracking-widest text-stone-500 uppercase mb-6 block">
               04 / FREQUENTLY ASKED QUESTIONS
@@ -271,7 +269,7 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                We’re a one-stop-shop for all things digital! From crafting stunning websites to skyrocketing your SEO rankings, managing your social media, and building unforgettable brands, we do it all. Oh, and we promise we don’t bite.
+                We provide UI/UX design, website design, website development, app development, branding & visual identity, 3D design, poster & marketing creatives, product visualization, video editing, and ongoing website maintenance. Our solutions are tailored to help businesses build a strong online presence.
               </div>
             </details>
 
@@ -281,7 +279,7 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                Think of us as your digital chefs—we cook up greatness without rushing the recipe. Typically, it takes 4–6 weeks, depending on your needs. But don’t worry, we keep you in the loop every step of the way!
+                Most websites are completed within 2–4 weeks, depending on the project size and requirements. We'll provide a clear timeline before we begin.
               </div>
             </details>
 
@@ -291,7 +289,7 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                Size doesn’t matter! Whether you’re a budding startup or an industry giant, we’re here to make your vision a reality. Big dreams? Small budget? Let’s chat!
+                We work with businesses of all sizes — from startups and small businesses to established brands. Every project receives the same level of attention and quality.
               </div>
             </details>
 
@@ -301,7 +299,7 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                Absolutely! Think of our packages as a base pizza—you can add or swap toppings (services) to create your perfect slice of digital success.
+                Yes, our packages are flexible. We can customize any package to align with your specific business goals, budget, and project requirements.
               </div>
             </details>
 
@@ -311,7 +309,7 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                Definitely! Each package is a customizable toolkit designed to fit your unique marketing goals.
+                Absolutely. We scale our services to fit your needs, whether you are looking for a foundational website design or a full-scale digital ecosystem.
               </div>
             </details>
 
@@ -321,7 +319,7 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                Of course! We tailor each package like a tailored suit, ensuring all elements align with your brand’s vision.
+                Yes, we create industry-specific solutions for retail, healthcare, education, real estate, hospitality, and more. Your website will be designed to suit your target audience.
               </div>
             </details>
 
@@ -331,14 +329,14 @@ export default function Home() {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform duration-300 font-sans text-lg select-none">+</span>
               </summary>
               <div className="mt-4 font-sans text-sm text-stone-600 leading-relaxed max-w-xl transition-all duration-300">
-                Yes, think of our offerings as building blocks—you can mix and match to build your ideal digital strategy.
+                Yes, you can add, remove, or upgrade features at any stage. We ensure your package remains flexible as your business grows.
               </div>
             </details>
           </div>
         </section>
 
         {/* Footer Section */}
-        <footer id="footer" className="relative px-8 pt-20 pb-72 flex flex-col md:flex-row justify-between items-start gap-12 overflow-hidden min-h-[580px] bg-[#FAFAFA]">
+        <footer id="footer" className="relative px-4 sm:px-8 pt-12 sm:pt-20 pb-48 sm:pb-72 flex flex-col md:flex-row justify-between items-start gap-10 sm:gap-12 overflow-hidden min-h-[480px] sm:min-h-[580px] bg-[#FAFAFA]">
           {/* Background Accent Image behind the content, pushed down and clipped at the bottom */}
           <div className="absolute bottom-[-200px] left-[-90px] right-[-90px] h-[520px] z-0 pointer-events-none">
             <Image
