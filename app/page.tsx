@@ -31,7 +31,7 @@ export default function Home() {
           </nav>
           {/* Mobile CTA */}
           <a
-            href="https://calendly.com"
+            href="https://calendly.com/flowancestudio"
             target="_blank"
             rel="noopener noreferrer"
             className="md:hidden px-4 py-2 bg-[#171717] text-white text-xs font-medium rounded-full"
@@ -51,7 +51,7 @@ export default function Home() {
             </h1>
             <div className="flex flex-wrap gap-3 sm:gap-4 font-sans">
               <a
-                href="https://calendly.com"
+                href="https://calendly.com/flowancestudio"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 sm:px-6 py-3 sm:py-3.5 bg-[#171717] hover:bg-primary hover:outline-primary hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(0,0,0,0.15)] outline outline-1 outline-offset-[-1px] outline-neutral-800 inline-flex justify-center items-center gap-2.5 cursor-pointer text-white font-medium text-sm font-sans"
@@ -107,7 +107,7 @@ export default function Home() {
                   alt="Design & Development"
                   width={120}
                   height={120}
-                  className="object-contain object-left grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="object-contain object-left transition-all duration-300"
                 />
               </div>
               <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
@@ -124,9 +124,9 @@ export default function Home() {
                 <Image
                   src="/icon/branding.png"
                   alt="Branding"
-                  width={120}
-                  height={120}
-                  className="object-contain object-left grayscale group-hover:grayscale-0 transition-all duration-300"
+                  width={100}
+                  height={100}
+                  className="object-contain object-left transition-all duration-300"
                 />
               </div>
               <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
@@ -143,9 +143,9 @@ export default function Home() {
                 <Image
                   src="/icon/3d.png"
                   alt="Product Visualization"
-                  width={120}
-                  height={120}
-                  className="object-contain object-left grayscale group-hover:grayscale-0 transition-all duration-300"
+                  width={100}
+                  height={100}
+                  className="object-contain object-left transition-all duration-300"
                 />
               </div>
               <h3 className="font-display font-medium text-xl text-[#171717] mb-4 leading-snug">
@@ -170,70 +170,116 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="px-4 sm:px-8 pb-16 sm:pb-24 md:pb-32 flex flex-col gap-14 sm:gap-20 md:gap-28">
-            {/* Project 1 */}
-            <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center group cursor-pointer">
-              <div className="md:col-span-5 flex flex-col justify-center">
-                <h3 className="font-display font-medium text-3xl md:text-4xl text-[#171717] tracking-tight leading-tight mb-4">
-                  The Copenhagen Atelier
-                </h3>
-                <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-6 max-w-md">
-                  Most design is forgettable. Ours isn't. We craft bespoke spaces, tactile objects, and thoughtful visual identities that people actually remember.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
-                    Spatial Design
-                  </span>
-                  <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
-                    Interior Curation
-                  </span>
-                </div>
+          <div className="px-4 sm:px-8 pb-16 sm:pb-24 md:pb-32 grid md:grid-cols-2 gap-10 md:gap-16">
+            {/* Project 1: Finny */}
+            <div className="flex flex-col group cursor-pointer">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
+                <video
+                  src="/projects/Finny.mp4"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
               </div>
-              <div className="md:col-span-7">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)]">
-                  <Image
-                    src="/studio_interior.png"
-                    alt="Minimalist design studio interior"
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-w-768px) 100vw, 58vw"
-                    priority
-                  />
-                </div>
+              <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
+                Finny
+              </h3>
+              <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
+                A smart financial platform that redefines how users track, manage, and optimize their daily expenses with an intuitive, modern interface.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  App Design
+                </span>
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Fintech
+                </span>
               </div>
             </div>
 
-            {/* Project 2 */}
-            <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center group cursor-pointer">
-              <div className="md:col-span-5 flex flex-col justify-center">
-                <h3 className="font-display font-medium text-3xl md:text-4xl text-[#171717] tracking-tight leading-tight mb-4">
-                  Organic Vessel Series
-                </h3>
-                <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-6 max-w-md">
-                  Investigations into tactile surface imperfections and natural glazes. A limited series of hand-coiled raw volcanic clay sculptures.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
-                    Product Design
-                  </span>
-                  <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
-                    Ceramics
-                  </span>
-                </div>
+            {/* Project 2: Amipay */}
+            <div className="flex flex-col group cursor-pointer">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
+                <video
+                  src="/projects/amipay.mp4"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
               </div>
-              <div className="md:col-span-7">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)]">
-                  <Image
-                    src="/ceramic_sculpture.png"
-                    alt="Tactile ceramic vase on shelf"
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-w-768px) 100vw, 58vw"
-                  />
-                </div>
+              <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
+                Amipay
+              </h3>
+              <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
+                A seamless payment gateway solution offering borderless transactions, intuitive financial analytics, and a frictionless user experience.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Fintech
+                </span>
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Web App
+                </span>
               </div>
             </div>
 
+            {/* Project 3: Healthy O Me */}
+            <div className="flex flex-col group cursor-pointer">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
+                <Image
+                  src="/projects/healthy-o-me.webp"
+                  alt="Healthy O Me"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="(max-w-768px) 100vw, 50vw"
+                />
+              </div>
+              <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
+                Healthy O Me
+              </h3>
+              <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
+                A comprehensive wellness and health tracking ecosystem tailored for mindful living, offering personalized insights and engaging digital interactions.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Health & Fitness
+                </span>
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  UI/UX
+                </span>
+              </div>
+            </div>
+
+            {/* Project 4: Orchid Realtors */}
+            <div className="flex flex-col group cursor-pointer">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
+                <Image
+                  src="/projects/🏡 Orchid Realtors – Advertisement Poster Design.jpg"
+                  alt="Orchid Realtors Advertisement Poster"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="(max-w-768px) 100vw, 50vw"
+                />
+              </div>
+              <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
+                Orchid Realtors
+              </h3>
+              <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
+                An elegant and impactful advertisement poster design crafted to elevate brand presence and attract premium clientele in the real estate market.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Graphic Design
+                </span>
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Branding
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
