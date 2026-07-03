@@ -166,7 +166,7 @@ export default function Home() {
               03 / SELECTED WORK
             </span>
             <h2 className="font-display font-normal text-2xl sm:text-3xl tracking-tight text-[#171717]">
-              Built artifacts.
+              Featured Projects.
             </h2>
           </div>
 
