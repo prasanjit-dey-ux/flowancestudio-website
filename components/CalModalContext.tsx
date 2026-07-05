@@ -24,29 +24,29 @@ export function CalModalProvider({ children }: { children: React.ReactNode }) {
           onClick={closeCalModal}
         >
           <div 
-            className="relative w-full max-w-[900px] h-[85vh] sm:h-[80vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-stone-200/80 transition-all duration-300 animate-fade-in-up"
+            className="relative w-full max-w-[900px] h-[85vh] sm:h-[80vh] flex flex-col transition-all duration-300 animate-fade-in-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header bar with close button */}
-            <div className="flex justify-between items-center px-5 py-4 border-b border-stone-100 bg-[#FAFAFA] select-none">
+            <div className="flex justify-between items-center px-4 sm:px-6 py-4 select-none">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs font-semibold tracking-wider text-stone-500 uppercase font-sans">
+                <span className="text-xs font-semibold tracking-wider text-white/95 uppercase font-sans">
                   Book a Consultation Call
                 </span>
               </div>
               <button 
                 onClick={closeCalModal}
-                className="text-stone-400 hover:text-stone-900 transition-colors w-8 h-8 rounded-full hover:bg-stone-100 flex items-center justify-center font-sans text-lg font-medium cursor-pointer"
+                className="text-white/60 hover:text-white transition-colors w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center font-sans text-lg font-medium cursor-pointer"
               >
                 ✕
               </button>
             </div>
-            {/* Iframe */}
-            <div className="flex-grow w-full bg-white relative px-4 sm:px-6 pb-6 pt-2">
+            {/* Iframe Card wrapper */}
+            <div className="flex-grow w-full bg-transparent relative px-4 sm:px-6 pb-6">
               <iframe
                 src="https://cal.com/flowance-studios/1-hour?embed=true"
-                className="w-full h-full border-none"
+                className="w-full h-full border border-stone-200/80 rounded-2xl bg-white shadow-2xl"
                 title="Book a call with Flowance Studios"
                 allow="camera; microphone; geolocation;"
               />
