@@ -38,18 +38,17 @@ interface ServiceTabButtonProps {
   text: string;
   active: boolean;
   onClick: () => void;
-  widthClass: string;
 }
 
 // Extracted reusable ServiceTabButton component with smooth horizontal slider motion
-export function ServiceTabButton({ text, active, onClick, widthClass }: ServiceTabButtonProps) {
+export function ServiceTabButton({ text, active, onClick }: ServiceTabButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`${widthClass} h-full rounded-[130px] flex justify-center items-center overflow-hidden cursor-pointer outline-none z-10`}
+      className="flex-1 h-full rounded-[130px] flex justify-center items-center overflow-hidden cursor-pointer outline-none z-10 px-1"
     >
       <div
-        className={`text-base font-normal font-sans leading-none transition-colors duration-200 ${
+        className={`text-[11px] sm:text-sm md:text-base font-normal font-sans leading-none transition-colors duration-200 ${
           active ? 'text-black font-medium' : 'text-stone-500 hover:text-stone-800'
         }`}
       >
@@ -69,7 +68,7 @@ export function ToggleSwitch({ enabled, onChange }: ToggleSwitchProps) {
   return (
     <button
       onClick={() => onChange(!enabled)}
-      className={`w-10 h-5 relative rounded-full transition-colors duration-200 cursor-pointer outline-none ${
+      className={`w-10 h-5 shrink-0 relative rounded-full transition-colors duration-200 cursor-pointer outline-none ${
         enabled ? 'bg-primary' : 'bg-neutral-300'
       }`}
     >
@@ -92,7 +91,7 @@ interface StepperProps {
 // Extracted reusable Stepper component
 export function Stepper({ value, onChange, min = 0, max = 99 }: StepperProps) {
   return (
-    <div className="flex items-center gap-3 bg-white outline outline-1 outline-neutral-200 rounded-full px-2 py-1">
+    <div className="flex items-center gap-3 bg-white outline outline-1 outline-neutral-200 rounded-full px-2 py-1 shrink-0">
       <button
         onClick={() => onChange(Math.max(min, value - 1))}
         className="w-6 h-6 flex items-center justify-center text-neutral-500 hover:text-black hover:bg-neutral-100 rounded-full transition-colors cursor-pointer outline-none"
@@ -110,18 +109,33 @@ export function Stepper({ value, onChange, min = 0, max = 99 }: StepperProps) {
   );
 }
 
+import { useCalModal } from './CalModalContext';
+
 interface PricingCTAButtonProps {
   text: string;
   href: string;
+  onClick?: () => void;
 }
 
-// Reusable PricingCTAButton with tactile inner and outer shadows to make it feel tangible on dark background
-export function PricingCTAButton({ text, href }: PricingCTAButtonProps) {
+export function PricingCTAButton({ text, href, onClick }: PricingCTAButtonProps) {
+  const { openCalModal } = useCalModal();
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    openCalModal();
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleButtonClick}
+      data-cal-link="flowance-studios/1-hour"
+      data-cal-config='{"layout":"month_view"}'
       className="w-full px-2.5 py-4 bg-stone-950 hover:bg-black transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(255,255,255,0.18),_inset_0px_-1.5px_0px_0px_rgba(0,0,0,0.4),_inset_0px_1.5px_0px_0px_rgba(255,255,255,0.15)] outline outline-1 outline-offset-[-1px] outline-stone-800 hover:outline-stone-700 inline-flex justify-center items-center gap-2.5 overflow-hidden outline-none cursor-pointer"
     >
       <div className="flex justify-start items-center gap-2.5">
@@ -134,6 +148,19 @@ export function PricingCTAButton({ text, href }: PricingCTAButtonProps) {
 
 export default function Pricing() {
   const [activeTab, setActiveTab] = useState<TabType>('landing-page');
+
+  const handleBookCall = (packageName: string, price: string, addOns: string) => {
+    fetch('/api/telegram', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        packageName,
+        details: `Price: ${price} | Selected Add-ons: ${addOns}`,
+      }),
+    }).catch((err) => console.error('Telegram notification failed:', err));
+  };
 
   // Add-on states for Card 1
   const [addDevelopment, setAddDevelopment] = useState(false);
@@ -299,21 +326,21 @@ export default function Pricing() {
 
   // Constant Card 2 (Ultimate Package) rendered on the right for all services
   const ConstantRightCard = () => (
-    <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
+    <div className="w-full max-w-[547px] min-h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden flex flex-col p-6">
       <FigmaFlowersRight />
 
       {/* Tag pill */}
-      <div className="left-[24px] top-[24px] absolute z-10">
+      <div className="z-10">
         <TagPill text="Ultimate package" />
       </div>
 
       {/* Price */}
-      <div className="left-[24px] top-[81px] absolute z-10 text-neutral-900 text-4xl font-normal font-display leading-9">
+      <div className="z-10 mt-8 mb-6 text-neutral-900 text-4xl font-normal font-display leading-9">
         from $5,999<span className="text-xs text-stone-400 font-sans font-normal ml-1">/mo</span>
       </div>
 
       {/* Checklist */}
-      <div className="w-[499px] left-[24px] top-[148px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
+      <div className="w-full inline-flex flex-col justify-start items-start gap-2.5 z-10 flex-grow">
         <div className="self-stretch inline-flex justify-start items-center gap-2.5">
           <FigmaCheckIcon />
           <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Bespoke Design &amp; Development</div>
@@ -345,7 +372,7 @@ export default function Pricing() {
       </div>
 
       {/* Capability Tags */}
-      <div className="w-[499px] left-[24px] top-[412px] absolute flex flex-wrap gap-2 z-10">
+      <div className="w-full mt-6 mb-8 flex flex-wrap gap-2 z-10">
         <ServiceTagPill text="Landing Page" />
         <ServiceTagPill text="Logo" />
         <ServiceTagPill text="Mobile Apps" />
@@ -356,24 +383,23 @@ export default function Pricing() {
       </div>
 
       {/* Book Call CTA Button */}
-      <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
-        <PricingCTAButton text="Book a call" href="https://calendly.com/flowancestudio" />
+      <div className="w-full mt-auto z-10">
+        <PricingCTAButton 
+          text="Book a call" 
+          href="https://cal.com/flowance-studios/1-hour" 
+          onClick={() => handleBookCall("Ultimate Package", "$5,999/mo", "Includes unlimited branding, design, development, custom animations, priority support")}
+        />
       </div>
     </div>
   );
 
-  // Helper to get active gliding tab offsets and widths dynamically
+  // Helper to get active gliding tab style responsive layout
   const getActiveTabStyle = () => {
-    switch (activeTab) {
-      case 'landing-page':
-        return { left: '4px', width: '140px' };
-      case 'branding':
-        return { left: '152px', width: '110px' };
-      case 'viz':
-        return { left: '270px', width: '120px' };
-      case 'web-app':
-        return { left: '398px', width: '140px' };
-    }
+    const percent = ['landing-page', 'branding', 'viz', 'web-app'].indexOf(activeTab) * 25;
+    return {
+      left: `calc(${percent}% + 4px)`,
+      width: 'calc(25% - 8px)',
+    };
   };
 
   return (
@@ -385,8 +411,8 @@ export default function Pricing() {
       </h2>
 
       {/* Segmented Tab Bar Outer Div Wrapper using drop shadows */}
-      <div className="flex justify-center mb-8">
-        <div className="h-16 p-1 bg-white rounded-[130px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.08),_inset_0px_1px_1px_0px_rgba(0,0,0,0.08)] inline-flex justify-start items-center gap-2 overflow-hidden relative w-[542px] z-10">
+      <div className="flex justify-center mb-8 w-full">
+        <div className="h-16 p-1 bg-white rounded-[130px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.08),_inset_0px_1px_1px_0px_rgba(0,0,0,0.08)] flex justify-start items-center relative w-full max-w-[542px] z-10 mx-auto">
           
           {/* Gliding active background active pill containing the exact shadow and outline styles requested */}
           <div
@@ -398,67 +424,63 @@ export default function Pricing() {
             text="Landing Page"
             active={activeTab === 'landing-page'}
             onClick={() => setActiveTab('landing-page')}
-            widthClass="w-[140px]"
           />
 
           <ServiceTabButton
             text="Branding"
             active={activeTab === 'branding'}
             onClick={() => setActiveTab('branding')}
-            widthClass="w-[110px]"
           />
 
           <ServiceTabButton
             text="3D Design"
             active={activeTab === 'viz'}
             onClick={() => setActiveTab('viz')}
-            widthClass="w-[120px]"
           />
 
           <ServiceTabButton
             text="Web/App Dev"
             active={activeTab === 'web-app'}
             onClick={() => setActiveTab('web-app')}
-            widthClass="w-[140px]"
           />
 
         </div>
       </div>
 
       {/* Cards Grid */}
-      <div className="overflow-x-auto flex gap-6 pb-6 md:grid md:grid-cols-2 md:gap-8 max-w-[1126px] mx-auto w-full px-4 md:px-0 scrollbar-none justify-start md:justify-center">
+      <div className="flex flex-col items-center gap-6 w-full md:grid md:grid-cols-2 md:gap-8 max-w-[1126px] mx-auto px-4 md:px-0 justify-center">
         
         {activeTab === 'landing-page' && (
           <>
             {/* Card 1 - Landing Page */}
-            <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
+            <div className="w-full max-w-[547px] min-h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden flex flex-col p-6">
               <FigmaFlowersLeft />
               
-              <div className="left-[24px] top-[24px] absolute z-10">
+              <div className="z-10">
                 <TagPill text="Landing page" />
               </div>
 
-              <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
+              <div className="w-full mt-8 mb-6 inline-flex flex-col justify-start items-start gap-6 z-10">
                 <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
                   from ${addDevelopment ? (1199 + 1500).toLocaleString() : '1,199'}
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
-                  <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
+                  <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 flex flex-row flex-wrap sm:flex-nowrap gap-3 justify-between items-center">
                     <div className="flex justify-start items-center gap-2">
                       <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add Development</div>
                     </div>
-                    <div className="flex justify-start items-center gap-3">
+                    <div className="flex justify-start items-center gap-3 shrink-0">
                       <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$1,500</div>
                       <ToggleSwitch enabled={addDevelopment} onChange={setAddDevelopment} />
                     </div>
                   </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Extra Pages</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+${addDevelopment ? '400' : '300'}/PAGE</div>
                     </div>
-                    <div className="w-[499px] h-px bg-zinc-100" />
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="w-full h-px bg-zinc-100" />
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Animations</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+$300/ANIM</div>
                     </div>
@@ -466,58 +488,62 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[309px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
+              <div className="w-full inline-flex flex-col justify-start items-start gap-2.5 z-10 mb-8 flex-grow">
                 {addDevelopment ? (
                   <>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom UI/UX + Full Development</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Production-ready code (Next.js/React)</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Fully Responsive + Interactions</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 Revisions (Design &amp; Code)</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma + Complete Source Code</div>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom UI/UX Design, No Templates</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Fully Responsive (Desktop, Tablet &amp; Mobile)</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Conversion-Focused UX</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 Revisions</div>
                     </div>
-                    <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                      <FigmaCheckIcon />
+                    <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                      <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                       <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Figma Source Files Included</div>
                     </div>
                   </>
                 )}
               </div>
 
-              <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
-                <PricingCTAButton text="Book a call" href="https://calendly.com/flowancestudio" />
+              <div className="w-full mt-auto z-10">
+                <PricingCTAButton 
+                  text="Book a call" 
+                  href="https://cal.com/flowance-studios/1-hour" 
+                  onClick={() => handleBookCall("Landing Page Package", addDevelopment ? "$2,699" : "$1,199", `Add Development: ${addDevelopment ? 'Yes' : 'No'}`)}
+                />
               </div>
             </div>
 
@@ -528,36 +554,36 @@ export default function Pricing() {
         {activeTab === 'branding' && (
           <>
             {/* Card 1 */}
-            <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
+            <div className="w-full max-w-[547px] min-h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden flex flex-col p-6">
               <FigmaFlowersLeft />
               
-              <div className="left-[24px] top-[24px] absolute z-10">
+              <div className="z-10">
                 <TagPill text="Branding" />
               </div>
 
-              <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
+              <div className="w-full mt-8 mb-6 inline-flex flex-col justify-start items-start gap-6 z-10">
                 <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
                   from ${(999 + (addBrandingSocialMedia ? 350 : 0)).toLocaleString()}
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
                   <div className="self-stretch flex flex-col gap-3">
-                    <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
+                    <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 flex flex-row flex-wrap sm:flex-nowrap gap-3 justify-between items-center">
                       <div className="flex justify-start items-center gap-2">
                         <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Social Media Kit</div>
                       </div>
-                      <div className="flex justify-start items-center gap-3">
+                      <div className="flex justify-start items-center gap-3 shrink-0">
                         <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$350</div>
                         <ToggleSwitch enabled={addBrandingSocialMedia} onChange={setAddBrandingSocialMedia} />
                       </div>
                     </div>
                   </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Extra Concepts</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+$250/EACH</div>
                     </div>
-                    <div className="w-[499px] h-px bg-zinc-100" />
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="w-full h-px bg-zinc-100" />
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Additional Revision Round</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+$150/EACH</div>
                     </div>
@@ -565,31 +591,35 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[309px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+              <div className="w-full inline-flex flex-col justify-start items-start gap-2.5 z-10 mb-8 flex-grow">
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Primary & Secondary Logo Suite</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom Color Palette & Typography System</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Brand Identity Assets and poster design for Print & Digital</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Editable Source Files & Full Ownership</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 Revisions</div>
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
-                <PricingCTAButton text="Book a call" href="https://calendly.com/flowancestudio" />
+              <div className="w-full mt-auto z-10">
+                <PricingCTAButton 
+                  text="Book a call" 
+                  href="https://cal.com/flowance-studios/1-hour" 
+                  onClick={() => handleBookCall("Branding Package", addBrandingSocialMedia ? "$1,349" : "$999", `Social Media Kit: ${addBrandingSocialMedia ? 'Yes' : 'No'}, Extra Concepts: ${brandingExtraConcepts}`)}
+                />
               </div>
             </div>
 
@@ -600,35 +630,35 @@ export default function Pricing() {
         {activeTab === 'viz' && (
           <>
             {/* Card 1 */}
-            <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
+            <div className="w-full max-w-[547px] min-h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden flex flex-col p-6">
               <FigmaFlowersLeft />
               
-              <div className="left-[24px] top-[24px] absolute z-10">
+              <div className="z-10">
                 <TagPill text="3D Visualization" />
               </div>
 
-              <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
+              <div className="w-full mt-8 mb-6 inline-flex flex-col justify-start items-start gap-6 z-10">
                 <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
                   from ${addHighRes ? (999 + 499).toLocaleString() : '999'}
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
                   {/* Reusable ToggleSwitch component */}
-                  <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
+                  <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 flex flex-row flex-wrap sm:flex-nowrap gap-3 justify-between items-center">
                     <div className="flex justify-start items-center gap-2">
                       <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add 8K Ultra High-Res</div>
                     </div>
-                    <div className="flex justify-start items-center gap-3">
+                    <div className="flex justify-start items-center gap-3 shrink-0">
                       <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$499</div>
                       <ToggleSwitch enabled={addHighRes} onChange={setAddHighRes} />
                     </div>
                   </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Extra Render Angles</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+$200/EACH</div>
                     </div>
-                    <div className="w-[499px] h-px bg-zinc-100" />
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="w-full h-px bg-zinc-100" />
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Raw 3D Models (.blend/.obj)</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">+$400</div>
                     </div>
@@ -636,31 +666,35 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[309px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+              <div className="w-full inline-flex flex-col justify-start items-start gap-2.5 z-10 mb-8 flex-grow">
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">High-fidelity 3D modeling of 1 product</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Custom materials, textures, and labels</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">3 professional studio lighting scenarios</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">2 feedback revisions per rendering</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 5-7 days</div>
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
-                <PricingCTAButton text="Book a call" href="https://calendly.com/flowancestudio" />
+              <div className="w-full mt-auto z-10">
+                <PricingCTAButton 
+                  text="Book a call" 
+                  href="https://cal.com/flowance-studios/1-hour" 
+                  onClick={() => handleBookCall("3D Visualization Package", addHighRes ? "$1,498" : "$999", `Add 8K Ultra High-Res: ${addHighRes ? 'Yes' : 'No'}`)}
+                />
               </div>
             </div>
 
@@ -671,36 +705,36 @@ export default function Pricing() {
         {activeTab === 'web-app' && (
           <>
             {/* Card 1 - Web App */}
-            <div className="w-[547px] h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden shrink-0">
+            <div className="w-full max-w-[547px] min-h-[590px] relative bg-white rounded-[20px] outline outline-1 outline-offset-[-1px] outline-neutral-200 overflow-hidden flex flex-col p-6">
               <FigmaFlowersLeft />
               
-              <div className="left-[24px] top-[24px] absolute z-10">
+              <div className="z-10">
                 <TagPill text="Web/App Development" />
               </div>
 
-              <div className="w-[499px] left-[24px] top-[81px] absolute inline-flex flex-col justify-start items-start gap-6 z-10">
+              <div className="w-full mt-8 mb-6 inline-flex flex-col justify-start items-start gap-6 z-10">
                 <div className="self-stretch justify-start text-neutral-900 text-4xl font-normal font-display leading-9">
                   from ${(3199 + (addMobileDev ? 1599 : 0)).toLocaleString()}
                 </div>
                 <div className="self-stretch flex flex-col justify-start items-start gap-6">
                   <div className="self-stretch flex flex-col gap-3">
-                    <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 inline-flex justify-between items-center">
+                    <div className="self-stretch px-4 py-3.5 bg-stone-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-zinc-100 flex flex-row flex-wrap sm:flex-nowrap gap-3 justify-between items-center">
                       <div className="flex justify-start items-center gap-2">
                         <div className="text-neutral-900 text-sm font-medium font-sans leading-5">Add Mobile Development</div>
                       </div>
-                      <div className="flex justify-start items-center gap-3">
+                      <div className="flex justify-start items-center gap-3 shrink-0">
                         <div className="text-zinc-800 text-xs font-bold font-sans leading-5">+$1,599</div>
                         <ToggleSwitch enabled={addMobileDev} onChange={setAddMobileDev} />
                       </div>
                     </div>
                   </div>
                   <div className="self-stretch flex flex-col justify-start items-start gap-3">
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Performance &amp; SEO Tuning</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">Included</div>
                     </div>
-                    <div className="w-[499px] h-px bg-zinc-100" />
-                    <div className="self-stretch inline-flex justify-between items-center">
+                    <div className="w-full h-px bg-zinc-100" />
+                    <div className="self-stretch inline-flex flex-wrap sm:flex-nowrap justify-between items-center gap-2">
                       <div className="text-neutral-600 text-sm font-normal font-sans leading-5">Cross-Browser Testing</div>
                       <div className="text-zinc-500 text-xs font-medium font-mono leading-4 tracking-wide">Included</div>
                     </div>
@@ -708,31 +742,35 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[309px] absolute inline-flex flex-col justify-start items-start gap-2.5 z-10">
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+              <div className="w-full inline-flex flex-col justify-start items-start gap-2.5 z-10 mb-8 flex-grow">
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Bespoke React/Next.js frontend development</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Backend, database &amp; CMS integration</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Responsive design across all screen sizes</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Smooth animations &amp; micro-interactions</div>
                 </div>
-                <div className="self-stretch inline-flex justify-start items-center gap-2.5">
-                  <FigmaCheckIcon />
+                <div className="self-stretch inline-flex justify-start items-start sm:items-center gap-2.5">
+                  <div className="mt-1 sm:mt-0"><FigmaCheckIcon /></div>
                   <div className="justify-start text-neutral-700 text-base font-normal font-sans leading-6">Delivery in 4–6 weeks</div>
                 </div>
               </div>
 
-              <div className="w-[499px] left-[24px] top-[513px] absolute z-10">
-                <PricingCTAButton text="Book a call" href="https://calendly.com/flowancestudio" />
+              <div className="w-full mt-auto z-10">
+                <PricingCTAButton 
+                  text="Book a call" 
+                  href="https://cal.com/flowance-studios/1-hour" 
+                  onClick={() => handleBookCall("Web/App Development Package", addMobileDev ? "$4,798" : "$3,199", `Add Mobile Development: ${addMobileDev ? 'Yes' : 'No'}`)}
+                />
               </div>
             </div>
 
@@ -753,10 +791,10 @@ export default function Pricing() {
           </p>
         </div>
         <a
-          href="https://t.me/flowancestudio"
+          href="https://t.me/iamjiiit"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3.5 bg-[#E5E5E5] hover:bg-[#CECECE] hover:outline-[#C0C0C0] transition-all duration-300 rounded-[130px] shadow-[0px_1px_0px_0px_rgba(65,65,65,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] inline-flex justify-center items-center gap-2.5 cursor-pointer outline-none text-[#171717] font-medium text-sm font-sans"
+          className="px-5 py-3.5 bg-[#E5E5E5] hover:bg-[#CECECE] hover:outline-[#C0C0C0] transition-all duration-300 rounded-[130px] shadow-[0px_1px_0px_0px_rgba(65,65,65,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] inline-flex justify-center items-center gap-2.5 cursor-pointer outline-none text-[#171717] font-medium text-sm font-sans"
         >
           <TelegramIcon className="w-5 h-5 flex-shrink-0" />
           <span>Send a message</span>
