@@ -43,7 +43,7 @@ export function CalModalProvider({ children }: { children: React.ReactNode }) {
               </button>
             </div>
             {/* Iframe */}
-            <div className="flex-grow w-full bg-stone-50 relative">
+            <div className="flex-grow w-full bg-white relative px-4 sm:px-6 pb-6 pt-2">
               <iframe
                 src="https://cal.com/flowance-studios/1-hour?embed=true"
                 className="w-full h-full border-none"
