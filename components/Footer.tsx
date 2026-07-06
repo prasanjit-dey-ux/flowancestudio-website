@@ -41,19 +41,6 @@ export default function Footer() {
 
         {/* Contact details: Phone & Email */}
         <div className="flex flex-col gap-6">
-          {/* Phone */}
-          <div className="flex flex-col gap-1.5">
-            <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-primary uppercase">
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-              </svg>
-              <span>Phone</span>
-            </div>
-            <a href="tel:+919734916714" className="text-sm font-normal text-stone-900 font-sans hover:text-primary transition-colors">
-              +91 97349 16714
-            </a>
-          </div>
-
           {/* Email */}
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-primary uppercase">

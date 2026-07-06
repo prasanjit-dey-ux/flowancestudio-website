@@ -51,11 +51,11 @@ export default function Home() {
             <div className="overflow-hidden block">
               <div className="flex flex-wrap gap-3 sm:gap-4 font-sans animate-slide-up-custom delay-300">
                 <a
-                  href="https://cal.com/flowance-studios/1-hour"
+                  href="https://cal.com/yourusername"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => handleHeroBookCall(e, "Hero Section CTA")}
-                  data-cal-link="flowance-studios/1-hour"
+                  data-cal-link="yourusername"
                   data-cal-config='{"layout":"month_view"}'
                   className="px-5 sm:px-6 py-3 sm:py-3.5 bg-[#171717] hover:bg-[#2A2A2A] hover:outline-[#2A2A2A] hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(0,0,0,0.15)] outline outline-1 outline-offset-[-1px] outline-neutral-800 inline-flex justify-center items-center gap-2.5 cursor-pointer text-white font-medium text-sm font-sans"
                 >
@@ -347,7 +347,7 @@ export default function Home() {
         <section id="faq" className="px-4 sm:px-8 py-16 sm:py-24 md:py-32 border-b border-[#D2D2D2] grid md:grid-cols-12 gap-8 md:gap-8">
           <div className="md:col-span-4">
             <span className="text-xs font-medium tracking-widest text-stone-500 uppercase mb-6 block">
-              04 / FREQUENTLY ASKED QUESTIONS
+              05 / FREQUENTLY ASKED QUESTIONS
             </span>
             <h2 className="font-display font-normal text-3xl tracking-tight leading-tight">
               Common inquiries.

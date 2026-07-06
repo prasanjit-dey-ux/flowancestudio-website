@@ -134,7 +134,7 @@ export function PricingCTAButton({ text, href, onClick }: PricingCTAButtonProps)
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleButtonClick}
-      data-cal-link="flowance-studios/1-hour"
+      data-cal-link="yourusername"
       data-cal-config='{"layout":"month_view"}'
       className="w-full px-2.5 py-4 bg-stone-950 hover:bg-black transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(255,255,255,0.18),_inset_0px_-1.5px_0px_0px_rgba(0,0,0,0.4),_inset_0px_1.5px_0px_0px_rgba(255,255,255,0.15)] outline outline-1 outline-offset-[-1px] outline-stone-800 hover:outline-stone-700 inline-flex justify-center items-center gap-2.5 overflow-hidden outline-none cursor-pointer"
     >
@@ -386,7 +386,7 @@ export default function Pricing() {
       <div className="w-full mt-auto z-10">
         <PricingCTAButton 
           text="Book a call" 
-          href="https://cal.com/flowance-studios/1-hour" 
+          href="https://cal.com/yourusername" 
           onClick={() => handleBookCall("Ultimate Package", "$5,999/mo", "Includes unlimited branding, design, development, custom animations, priority support")}
         />
       </div>
@@ -404,6 +404,13 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="px-8 py-8 md:py-12 border-b border-[#D2D2D2] flex flex-col justify-center bg-[#FAFAFA]/40 relative">
+      
+      {/* Eyebrow */}
+      <div className="flex justify-center mb-2 z-10">
+        <span className="text-xs font-medium tracking-widest text-stone-500 uppercase">
+          04 / PRICING
+        </span>
+      </div>
       
       {/* Title */}
       <h2 className="font-display font-medium text-3xl md:text-4xl tracking-tight text-center text-[#171717] mb-8">
@@ -541,7 +548,7 @@ export default function Pricing() {
               <div className="w-full mt-auto z-10">
                 <PricingCTAButton 
                   text="Book a call" 
-                  href="https://cal.com/flowance-studios/1-hour" 
+                  href="https://cal.com/yourusername" 
                   onClick={() => handleBookCall("Landing Page Package", addDevelopment ? "$2,699" : "$1,199", `Add Development: ${addDevelopment ? 'Yes' : 'No'}`)}
                 />
               </div>
@@ -617,7 +624,7 @@ export default function Pricing() {
               <div className="w-full mt-auto z-10">
                 <PricingCTAButton 
                   text="Book a call" 
-                  href="https://cal.com/flowance-studios/1-hour" 
+                  href="https://cal.com/yourusername" 
                   onClick={() => handleBookCall("Branding Package", addBrandingSocialMedia ? "$1,349" : "$999", `Social Media Kit: ${addBrandingSocialMedia ? 'Yes' : 'No'}, Extra Concepts: ${brandingExtraConcepts}`)}
                 />
               </div>
@@ -692,7 +699,7 @@ export default function Pricing() {
               <div className="w-full mt-auto z-10">
                 <PricingCTAButton 
                   text="Book a call" 
-                  href="https://cal.com/flowance-studios/1-hour" 
+                  href="https://cal.com/yourusername" 
                   onClick={() => handleBookCall("3D Visualization Package", addHighRes ? "$1,498" : "$999", `Add 8K Ultra High-Res: ${addHighRes ? 'Yes' : 'No'}`)}
                 />
               </div>
@@ -768,7 +775,7 @@ export default function Pricing() {
               <div className="w-full mt-auto z-10">
                 <PricingCTAButton 
                   text="Book a call" 
-                  href="https://cal.com/flowance-studios/1-hour" 
+                  href="https://cal.com/yourusername" 
                   onClick={() => handleBookCall("Web/App Development Package", addMobileDev ? "$4,798" : "$3,199", `Add Mobile Development: ${addMobileDev ? 'Yes' : 'No'}`)}
                 />
               </div>

@@ -45,7 +45,7 @@ export function CalModalProvider({ children }: { children: React.ReactNode }) {
             {/* Iframe */}
             <div className="flex-grow w-full bg-stone-50 relative">
               <iframe
-                src="https://cal.com/flowance-studios/1-hour?embed=true"
+                src="https://cal.com/yourusername?embed=true"
                 className="w-full h-full border-none"
                 title="Book a call with Flowance Studios"
                 allow="camera; microphone; geolocation;"

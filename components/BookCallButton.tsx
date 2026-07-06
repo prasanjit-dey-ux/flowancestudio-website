@@ -18,7 +18,7 @@ export default function BookCallButton({ className, children }: BookCallButtonPr
 
   return (
     <a
-      href="https://cal.com/flowance-studios/1-hour"
+      href="https://cal.com/yourusername"
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}

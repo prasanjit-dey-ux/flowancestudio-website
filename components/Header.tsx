@@ -46,11 +46,11 @@ export default function Header() {
       </nav>
       {/* Mobile CTA */}
       <a
-        href="https://cal.com/flowance-studios/1-hour"
+        href="https://cal.com/yourusername"
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleBookCallClick}
-        data-cal-link="flowance-studios/1-hour"
+        data-cal-link="yourusername"
         data-cal-config='{"layout":"month_view"}'
         className="md:hidden px-4 py-2 bg-[#171717] text-white text-xs font-medium rounded-full"
       >
