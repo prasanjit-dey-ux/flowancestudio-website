@@ -20,6 +20,7 @@ interface ProjectData {
   accentColor: string;
   nextSlug: string;
   nextTitle: string;
+  gallery?: string[];
 }
 
 const projectsDb: Record<string, ProjectData> = {
@@ -91,13 +92,34 @@ const projectsDb: Record<string, ProjectData> = {
     deliverables: ["Brand Identity", "Graphic Design"],
     timeline: "2026",
     mediaType: "image",
-    mediaSrc: "/projects/Nykaa Ad Design.jpg",
+    mediaSrc: "/projects/nykaa-hero.jpg",
+    gallery: ["/projects/Nykaa Ad Design.jpg"],
     problem: "Skincare advertising often struggles to make essential sun protection feel emotionally desirable, falling back on clinical layouts that fail to connect with beauty-focused consumers.",
     solution: "We designed a warm rose-to-blush gradient poster featuring a tiered white podium and orbiting conversational callouts. This composition elevates the product duo like a retail display and neutralizes objections without sounding clinical.",
     metrics: [
       { value: "Brand DNA", label: "Rose-to-Blush Theme" },
       { value: "Aspirational", label: "Visual Positioning" },
       { value: "Objection Free", label: "Conversational Orbit" }
+    ],
+    accentColor: "#0400FF",
+    nextSlug: "hrender",
+    nextTitle: "HRender"
+  },
+  "hrender": {
+    title: "HRender",
+    tagline: "A premium 3D visualization studio delivering photorealistic product renders and immersive animations for global luxury brands.",
+    client: "HRender Inc.",
+    role: "3D Design & Art Direction",
+    deliverables: ["3D Modeling", "Texturing & Lighting", "Cinematic Animation", "Creative Direction"],
+    timeline: "2026",
+    mediaType: "video",
+    mediaSrc: "/projects/HRender.mp4",
+    problem: "Luxury brands struggle to showcase their products online with the same sensory depth and prestige as a physical showroom. Traditional studio photography is expensive, slow, and lacks the ability to capture complex lighting and interior details dynamically.",
+    solution: "We developed a suite of high-fidelity 3D renderings and motion graphics that capture the interplay of light, materials, and form. By using advanced physics-based rendering engines, we created photorealistic visuals that highlight the product's craftsmanship and aesthetic precision.",
+    metrics: [
+      { value: "100%", label: "Photorealistic Accuracy" },
+      { value: "4K UHD", label: "Render Quality" },
+      { value: "60fps", label: "Fluid Motion" }
     ],
     accentColor: "#0400FF",
     nextSlug: "orchid-realtors",
@@ -489,6 +511,24 @@ export default async function ProjectPage({ params }: PageProps) {
               </p>
             </div>
           </section>
+
+          {/* Project Gallery Showcase (if available) */}
+          {project.gallery && project.gallery.length > 0 && (
+            <section className="px-4 sm:px-8 py-12 sm:py-16 border-b border-[#D2D2D2] bg-white/40 flex flex-col gap-12">
+              <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase block text-center">Visual Assets &amp; Deliverables</span>
+              <div className="flex flex-col gap-8 max-w-4xl mx-auto w-full">
+                {project.gallery.map((src, idx) => (
+                  <div key={idx} className="w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_24px_0px_rgba(0,0,0,0.03)] animate-fade-in-up">
+                    <img
+                      src={src}
+                      alt={`${project.title} gallery image ${idx + 1}`}
+                      className="w-full h-auto object-contain block"
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Impact Metrics */}
           <section className="px-4 sm:px-8 py-16 sm:py-24 border-b border-[#D2D2D2] bg-white/40">

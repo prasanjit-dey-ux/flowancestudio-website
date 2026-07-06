@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AsciiTerrain from "@/components/AsciiTerrain";
@@ -12,7 +11,6 @@ import GoogleMeetIcon from "@/public/icon/google-meet";
 import TelegramIcon from "@/public/icon/telegram";
 
 export default function Home() {
-  const [showAllProjects, setShowAllProjects] = useState(false);
   const { openCalModal } = useCalModal();
   const handleHeroBookCall = (e: React.MouseEvent<HTMLAnchorElement>, location: string) => {
     e.preventDefault();
@@ -51,11 +49,11 @@ export default function Home() {
             <div className="overflow-hidden block">
               <div className="flex flex-wrap gap-3 sm:gap-4 font-sans animate-slide-up-custom delay-300">
                 <a
-                  href="https://cal.com/yourusername"
+                  href="https://cal.com/iamjiit/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => handleHeroBookCall(e, "Hero Section CTA")}
-                  data-cal-link="yourusername"
+                  data-cal-link="iamjiit/30min"
                   data-cal-config='{"layout":"month_view"}'
                   className="px-5 sm:px-6 py-3 sm:py-3.5 bg-[#171717] hover:bg-[#2A2A2A] hover:outline-[#2A2A2A] hover:text-white transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(0,0,0,0.15)] outline outline-1 outline-offset-[-1px] outline-neutral-800 inline-flex justify-center items-center gap-2.5 cursor-pointer text-white font-medium text-sm font-sans"
                 >
@@ -78,7 +76,7 @@ export default function Home() {
           {/* Full Bleed Hero Image */}
           <div className="w-full relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] overflow-hidden border-t border-b border-[#D2D2D2] bg-stone-50 animate-fade-in-up delay-400">
             <Image
-              src="/hero-bg.png"
+              src="/hero-bg.webp"
               alt="Flowance Studio hero illustration"
               fill
               className="object-cover object-center"
@@ -239,7 +237,7 @@ export default function Home() {
             {/* Project 3: Healthy O Me */}
             <Link
               href="/projects/healthy-o-me"
-              className={`p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer border-b md:border-r border-[#D2D2D2] ${showAllProjects ? "" : "md:border-b-0"}`}
+              className="p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer border-b md:border-r border-[#D2D2D2]"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
                 <Image
@@ -269,12 +267,12 @@ export default function Home() {
             {/* Project 4: Nykaa */}
             <Link
               href="/projects/nykaa"
-              className={`p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer border-[#D2D2D2] ${showAllProjects ? "border-b" : "border-b-0"}`}
+              className="p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer border-b border-[#D2D2D2]"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
                 <Image
-                  src="/projects/Nykaa Ad Design.jpg"
-                  alt="Nykaa Ad Design"
+                  src="/projects/nykaa-hero.jpg"
+                  alt="Nykaa"
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   sizes="(max-w-768px) 100vw, 50vw"
@@ -296,47 +294,66 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Project 5: Orchid Realtors */}
-            {showAllProjects && (
-              <Link
-                href="/projects/orchid-realtors"
-                className="p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer md:border-r border-[#D2D2D2]"
-              >
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
-                  <Image
-                    src="/projects/🏡 Orchid Realtors – Advertisement Poster Design.jpg"
-                    alt="Orchid Realtors Advertisement Poster"
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-w-768px) 100vw, 50vw"
-                  />
-                </div>
-                <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
-                  Orchid Realtors
-                </h3>
-                <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
-                  An elegant and impactful advertisement poster design crafted to elevate brand presence and attract premium clientele in the real estate market.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
-                    Graphic Design
-                  </span>
-                  <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
-                    Branding
-                  </span>
-                </div>
-              </Link>
-            )}
-          </div>
-
-          {/* See More/Less toggle button row */}
-          <div className="flex justify-center py-8 border-t border-[#D2D2D2]">
-            <button
-              onClick={() => setShowAllProjects(!showAllProjects)}
-              className="px-5 py-3 bg-[#E5E5E5] hover:bg-[#CECECE] hover:outline-[#C0C0C0] transition-all duration-300 rounded-[130px] shadow-[0px_1.5px_0px_0px_rgba(0,0,0,0.15)] outline outline-1 outline-offset-[-1px] outline-[#D0D0D0] text-[#171717] font-medium text-sm font-sans cursor-pointer"
+            {/* Project 5: HRender */}
+            <Link
+              href="/projects/hrender"
+              className="p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer border-b md:border-r md:border-b-0 border-[#D2D2D2]"
             >
-              {showAllProjects ? 'See less' : 'See more'}
-            </button>
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
+                <video
+                  src="/projects/HRender.mp4"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              </div>
+              <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
+                HRender
+              </h3>
+              <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
+                A premium 3D visualization studio delivering photorealistic product renders and immersive animations for global luxury brands.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  3D Visualization
+                </span>
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Art Direction
+                </span>
+              </div>
+            </Link>
+
+            {/* Project 6: Orchid Realtors */}
+            <Link
+              href="/projects/orchid-realtors"
+              className="p-4 sm:p-8 md:p-12 flex flex-col group cursor-pointer border-[#D2D2D2]"
+            >
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] bg-stone-50 outline outline-1 outline-neutral-200/50 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)] mb-6">
+                <Image
+                  src="/projects/🏡 Orchid Realtors – Advertisement Poster Design.jpg"
+                  alt="Orchid Realtors Advertisement Poster"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="(max-w-768px) 100vw, 50vw"
+                />
+              </div>
+              <h3 className="font-display font-medium text-xl md:text-2xl text-[#171717] tracking-tight leading-tight mb-3">
+                Orchid Realtors
+              </h3>
+              <p className="font-sans text-sm md:text-[15px] text-stone-500 leading-relaxed mb-5 max-w-md">
+                An elegant and impactful advertisement poster design crafted to elevate brand presence and attract premium clientele in the real estate market.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Graphic Design
+                </span>
+                <span className="text-[11px] font-sans font-medium text-stone-600 bg-neutral-100 rounded-[6px] px-3 py-1.5 outline outline-1 outline-offset-[-1px] outline-gray-200 shadow-[0px_1px_0px_0px_rgba(65,65,65,0.05)]">
+                  Branding
+                </span>
+              </div>
+            </Link>
           </div>
         </section>
 
